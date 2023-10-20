@@ -32,17 +32,12 @@ button.addEventListener("click", () => {
     }
 })
 
+ul.addEventListener("click", (event) => {
 
-
-const makeArr = Array.from(dlt);
-const makeArrLi = Array.from(li);
-
-makeArr.map((dltBtn) => {
-    dltBtn.addEventListener("click", () => {
+    if (event.target.nodeName == "BUTTON") {
         console.log("dlt");
-        makeArrLi.map((allLi) => {
-            console.log(allLi);
-            
-        })
-    })
+        const listItem = event.target.parentElement;
+        console.log(listItem);
+        listItem.remove()
+    }
 })
