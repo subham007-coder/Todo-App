@@ -6,29 +6,43 @@ const li = document.querySelectorAll("li");
 const dlt = document.querySelectorAll(".dlt");
 const makeLi = document.createElement("li");
 
-// p.textContent = "Task Add Successful..."
 
 button.addEventListener("click", () => {
-    button.style.backgroundColor = "lightgreen"
-    ul.appendChild(makeLi);
-    const makeString = String(makeLi.value)
-    makeLi.innerHTML = input.value;
-    input.value = "";
 
-    const makeBtn = document.createElement("button");
-    makeBtn.textContent = "Delete Task"
-    makeBtn.classList.add("dlt")
+    if (input.value == "") {
+        p.textContent = "Please Add A Task...";
+        p.style.color = "red";
+        console.log("no");
+        button.style.backgroundColor = "red";
+        button.style.color = "white";
+    } else {
+        p.textContent = "Task Add Successful...";
+        p.style.color = "lightgreen";
+        button.style.backgroundColor = "lightgreen"
+        button.style.color = "black"
+        ul.appendChild(makeLi);
+        const makeString = String(makeLi.value)
+        makeLi.innerHTML = input.value;
+        input.value = "";
 
-    makeLi.appendChild(makeBtn);
+        const makeBtn = document.createElement("button");
+        makeBtn.textContent = "Delete Task"
+        makeBtn.classList.add("dlt")
+        makeLi.appendChild(makeBtn);
+    }
 })
-const inpage = li.forEach((li) => {
-    dlt.forEach((allBtn) => {
-        // console.log(allBtn);
-        allBtn.addEventListener("click", () => {
-            console.log("remove");
-            li.remove()
-            makeLi.remove()
+
+
+
+const makeArr = Array.from(dlt);
+const makeArrLi = Array.from(li);
+
+makeArr.map((dltBtn) => {
+    dltBtn.addEventListener("click", () => {
+        console.log("dlt");
+        makeArrLi.map((allLi) => {
+            console.log(allLi);
+            
         })
     })
-
 })
