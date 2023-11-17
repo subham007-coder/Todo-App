@@ -38,6 +38,7 @@ ul.addEventListener("click", (event) => {
         console.log("dlt");
         const listItem = event.target.parentElement;
         console.log(listItem);
-        listItem.remove()
+        listItem.remove();
     }
-})
+});
+console.log();
