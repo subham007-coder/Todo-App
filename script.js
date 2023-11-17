@@ -21,13 +21,13 @@ button.addEventListener("click", () => {
         button.style.backgroundColor = "lightgreen"
         button.style.color = "black"
         ul.appendChild(makeLi);
-        const makeString = String(makeLi.value)
+        const makeString = String(makeLi.value);
         makeLi.innerHTML = input.value;
         input.value = "";
 
         const makeBtn = document.createElement("button");
-        makeBtn.textContent = "Delete Task"
-        makeBtn.classList.add("dlt")
+        makeBtn.textContent = "Delete Task";
+        makeBtn.classList.add("dlt");
         makeLi.appendChild(makeBtn);
     }
 })
@@ -41,4 +41,5 @@ ul.addEventListener("click", (event) => {
         listItem.remove();
     }
 });
-console.log();
+
+localStorage.setItem("name", "subham")
