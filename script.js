@@ -7,6 +7,10 @@ const dlt = document.querySelectorAll(".dlt");
 const makeLi = document.createElement("li");
 
 
+//(now we can write sql queries in our CLI)
+// step : 1 cd "C:\Program Files\MySQL\MySQL Server 8.0\bin"
+// step : 2 .\mysql.exe -u root -p
+
 button.addEventListener("click", () => {
 
     if (input.value == "") {
