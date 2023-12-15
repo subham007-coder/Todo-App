@@ -9,6 +9,9 @@
   "author": "subham das",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
     "mysql2": "^3.6.5"
   }
 }

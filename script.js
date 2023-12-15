@@ -38,3 +38,47 @@
 // });
 
 
+const express = require("express");
+const app = express();
+const path = require("path");
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.static("public"));
+const mongoose = require('mongoose');
+app.use(express.urlencoded({ extended: true }))
+
+const todoSchema = new mongoose.Schema({
+    todoName: {
+        type: String,
+    },
+    time_now: {
+        type: Date,
+    }
+});
+const Todo = mongoose.model("Todo", todoSchema);
+
+// const todo1 = new Todo({
+//     todoName: "Next add todo by user",
+//     time_now: new Date(),
+// });
+
+// todo1.save()
+//     .then(console.log("todo was save"))
+//     .catch(err => console.log(err));
+
+main()
+    .then(res => { console.log("i am mongoose function call"); })
+    .catch(err => console.log(err));
+
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/todo');
+}
+
+app.get("/", async (req, res) => {
+    let todos = await Todo.find();
+    res.render("index.ejs", { todos });
+})
+
+app.listen("8080", () => {
+    console.log("res send");
+});
