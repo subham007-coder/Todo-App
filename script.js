@@ -60,7 +60,7 @@ app.post("/add", async (req, res) => {
 
 app.delete("/todo/:id", async (req, res) => {
     let {id} = req.params;
-    let deletedChat = await Todo.findByIdAndDelete(id);
+    let deletedChat = await Todo.findByIdAndDelete(id).maxTimeMS(30000);
     console.log(deletedChat);
     res.redirect("/");
 });
