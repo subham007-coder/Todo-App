@@ -36,3 +36,9 @@ ul li{
     height: 30px;
     list-style: decimal;
 }
+
+.new{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

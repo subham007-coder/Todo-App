@@ -6,7 +6,6 @@
 // const dlt = document.querySelectorAll(".dlt");
 // const makeLi = document.createElement("li");
 
-
 // button.addEventListener("click", () => {
 
 //     if (input.value == "") {
@@ -77,6 +76,30 @@ async function main() {
 app.get("/", async (req, res) => {
     let todos = await Todo.find();
     res.render("index.ejs", { todos });
+})
+
+app.get("/todo/new", (req, res) => {
+    res.render("new.ejs");
+});
+
+app.post("/add", async (req, res) => {
+    let { newTodo } = req.body;
+    let addTodo = new Todo({
+        todoName: newTodo,
+        time_now: new Date(),
+    });
+    await addTodo.save()
+        .then(res => { console.log("todo was save") })
+        .catch(err => { console.log(err) });
+    res.redirect("/");
+});
+
+app.delete("/todo/:id", async (req, res) => {
+    // res.send("delete send");
+    let {id} = req.params;
+    let deletedChat = await Todo.findByIdAndDelete(id);
+    console.log(deletedChat);
+    res.redirect("/");
 })
 
 app.listen("8080", () => {
