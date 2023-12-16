@@ -38,7 +38,7 @@ async function main() {
 }
 
 app.get("/", async (req, res) => {
-    let todos = await Todo.find();
+    const todos = await Todo.find().maxTimeMS(30000);;
     res.render("index.ejs", { todos });
 })
 
