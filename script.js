@@ -40,11 +40,14 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'));
+
 
 const todoSchema = new mongoose.Schema({
     todoName: {
@@ -95,12 +98,11 @@ app.post("/add", async (req, res) => {
 });
 
 app.delete("/todo/:id", async (req, res) => {
-    // res.send("delete send");
     let {id} = req.params;
     let deletedChat = await Todo.findByIdAndDelete(id);
     console.log(deletedChat);
     res.redirect("/");
-})
+});
 
 app.listen("8080", () => {
     console.log("res send");
