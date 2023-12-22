@@ -12,21 +12,24 @@
 const mysql = require('mysql2');
 // create the connection to database
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    database: 'todoapp',
-    password: '#adsuforever24'
-  });
+  host: 'localhost',
+  user: 'root',
+  database: 'todoapp',
+  password: '#adsuforever24'
+});
 
-  try {
-    connection.query("show tables", (err, result) => {
-        if (err) throw err;
-        console.log(result);
-    })
-  } catch (error) {
-    console.log(error);
-  }
+let q = "insert into work (todothis) values (?)";
 
+
+try {
+  connection.query(q, (err, result) => {
+    if (err) throw err;
+    console.log(result);
+  })
+} catch (error) {
+  console.log(error);
+}
+connection.end();
 // button.addEventListener("click", () => {
 
 //     if (input.value == "") {
