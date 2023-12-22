@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <h1>Todo App</h1>
+    <!-- <input type="text" placeholder="Input Your Task"> -->
+
+    <ul>
+        <% for(let todo of todos){ %>
+            <li>
+                <form method="post" action="/todo/<%= todo._id %>?_method=DELETE">
+                    <%= todo.todoName %>
+
+                        <span style="color: chartreuse;">Time:- <%= todo.time_now.toString().split(" ")[4] %></span>
+                
+                <span style=" color: rgb(255, 196, 0);">
+                                <%= todo.time_now.toString().split(" ").slice(0, 4).join(" ") %></span>
+                                <button>Delete</button>
+                                </form>
+            </li>
+            <% } %>
+    </ul>
+
+    <form action=" /todo/new" method="get">
+                                    <button>Add Task</button>
+                </form>
+
+
+                <!-- <script src="script.js"></script> -->
+</body>
+
+</html>
