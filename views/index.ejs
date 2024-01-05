@@ -10,7 +10,6 @@
 
 <body>
     <h1>Todo App</h1>
-    <!-- <input type="text" placeholder="Input Your Task"> -->
 
     <ul>
         <% for(let todo of todos){ %>
@@ -19,15 +18,17 @@
                     <%= todo.todoName %>
 
                         <span style="color: chartreuse;">Time:- <%= todo.time_now.toString().split(" ")[4] %></span>
-                
+                        
                 <span style=" color: rgb(255, 196, 0);">
                                 <%= todo.time_now.toString().split(" ").slice(0, 4).join(" ") %></span>
+
                                 <button>Delete</button>
                                 </form>
             </li>
+            <br>
             <% } %>
     </ul>
-
+<br>
     <form action=" /todo/new" method="get">
                                     <button>Add Task</button>
                 </form>
