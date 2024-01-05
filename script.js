@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+require('dotenv').config();
 
+let PORT = process.env.PORT || 8080;
 
 const todoSchema = new mongoose.Schema({
     todoName: {
@@ -34,11 +36,11 @@ main()
     .catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/todo');
+    await mongoose.connect(process.env.MONGO_URI);
 }
 
 app.get("/", async (req, res) => {
-    const todos = await Todo.find().maxTimeMS(30000);
+    const todos = await Todo.find();
     res.render("index.ejs", { todos });
 })
 
@@ -55,16 +57,17 @@ app.post("/add", async (req, res) => {
     await addTodo.save()
         .then(res => { console.log("todo was save") })
         .catch(err => { console.log(err) });
-    res.redirect("/");
+        res.redirect("/");
 });
 
 app.delete("/todo/:id", async (req, res) => {
     let {id} = req.params;
-    let deletedChat = await Todo.findByIdAndDelete(id).maxTimeMS(30000);
+    let deletedChat = await Todo.findByIdAndDelete(id);
     console.log(deletedChat);
     res.redirect("/");
 });
 
-app.listen("8080", () => {
+app.listen(PORT, () => {
     console.log("res send");
+    console.log("http://localhost:8080/");
 });
